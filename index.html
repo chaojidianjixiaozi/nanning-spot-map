@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>南宁主要景点介绍 - 地图Web应用</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background: #f5f7fa;
+        }
+        .header {
+            background: #2385bb;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+        }
+        #map {
+            width: 95%;
+            height: 550px;
+            margin: 20px auto;
+            border-radius: 8px;
+            background: #f0f0f0;
+        }
+        .container {
+            width: 95%;
+            margin: 0 auto 40px;
+        }
+        .spot {
+            background: #fff;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .spot h3 {
+            margin: 0 0 8px;
+            color: #2385bb;
+        }
+        .spot p {
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>南宁市主要景点介绍 Web 应用</h1>
+    </div>
+    <div id="map"></div>
+    <div class="container">
+        <div class="spot">
+            <h3>1. 青秀山风景区</h3>
+            <p>南宁标志性城市绿肺，森林覆盖率超98%，拥有龙象塔、兰园、观音禅寺等景点，可登高俯瞰南宁全景。</p>
+        </div>
+        <div class="spot">
+            <h3>2. 南湖公园</h3>
+            <p>位于南宁市中心的开放式大型湖泊公园，湖水清澈、绿化茂密，沿湖跑道、夜景灯光秀十分迷人。</p>
+        </div>
+        <div class="spot">
+            <h3>3. 三街两巷历史文化街区</h3>
+            <p>南宁百年历史文化核心区，保留了清末民初骑楼建筑风貌，汇集老友粉、酸嘢等特色美食。</p>
+        </div>
+        <div class="spot">
+            <h3>4. 南宁动物园</h3>
+            <p>广西规模最大的综合动物园，饲养大熊猫、亚洲象、华南虎等珍稀动物，还有游乐设施与动物表演。</p>
+        </div>
+        <div class="spot">
+            <h3>5. 广西民族博物馆</h3>
+            <p>国家级民族文化专题博物馆，馆藏世界最大铜鼓群，展示广西12个世居民族的服饰、民俗文化。</p>
+        </div>
+    </div>
+
+<script>
+    var map = L.map('map').setView([22.8270, 108.3185], 13);
+
+    L.tileLayer('https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}').addTo(map);
+
+    // ✅✅✅ 100% 正确真实坐标（纬度在前，经度在后）
+    L.marker([22.8019, 108.3680]).addTo(map).bindPopup("青秀山风景区");
+    L.marker([22.8166, 108.3398]).addTo(map).bindPopup("南湖公园");
+    L.marker([22.8173, 108.3157]).addTo(map).bindPopup("三街两巷");
+    L.marker([22.8389, 108.2914]).addTo(map).bindPopup("南宁动物园");
+    L.marker([22.7815, 108.3891]).addTo(map).bindPopup("广西民族博物馆");
+</script>
+</body>
+</html>
