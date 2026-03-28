@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>南宁主要景点 - 我的地图Web应用</title>
-    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=3971253b1e611374d59855b91f1f931f"></script>
+    <!-- 引入Leaflet地图库 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         body { margin: 0; font-family: "Microsoft YaHei"; background: #f5f7fa; }
         .title { background: #2385bb; color: #fff; text-align: center; padding: 15px; }
@@ -41,9 +43,23 @@
         </div>
     </div>
     <script>
-        var map = new AMap.Map('map', {
-            zoom: 12,
-            center: [108.3200, 22.8240]
+        // 初始化地图，中心点南宁
+        const map = L.map('map').setView([22.8240, 108.3200], 12);
+        // 加载天地图国内瓦片（无需Key，稳定加载）
+        L.tileLayer('https://t{s}.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=40d83f36333f333f333f333f333f333f', {
+            subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'],
+            attribution: '&copy; 天地图'
+        }).addTo(map);
+        // 添加景点标记点
+        const spots = [
+            {name: "青秀山风景区", lat: 22.8055, lng: 108.3816},
+            {name: "南湖公园", lat: 22.8170, lng: 108.3660},
+            {name: "三街两巷", lat: 22.8190, lng: 108.3150},
+            {name: "南宁动物园", lat: 22.8450, lng: 108.2900},
+            {name: "广西民族博物馆", lat: 22.8080, lng: 108.4020}
+        ];
+        spots.forEach(spot => {
+            L.marker([spot.lat, spot.lng]).addTo(map).bindPopup(spot.name);
         });
     </script>
 </body>
